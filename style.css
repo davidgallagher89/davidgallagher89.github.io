@@ -1,0 +1,86 @@
+:root {
+    --primary-bg: #000000;
+    --secondary-bg: #111111;
+    --border-color: #333333;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+    --action-color: #ffffff;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    font-family: 'Helvetica', Arial, sans-serif;
+    margin: 0;
+    line-height: 1.5;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.brand { font-weight: bold; letter-spacing: 1px; }
+
+.menu a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+}
+
+.hero-section {
+    padding: 10rem 5%;
+    text-align: left;
+}
+
+h1 { font-size: 3rem; max-width: 800px; margin-bottom: 1rem; }
+
+h2 { border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 2rem; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background-color: var(--border-color);
+    margin: 0 5% 5rem 5%;
+}
+
+.card {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+}
+
+.stack {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+/* --- Animation Utilities --- */
+
+/* Cursore per l'effetto terminale */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-start infinite;
+    color: var(--primary-accent);
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Stato iniziale elementi nascosti */
+.hidden-element {
+    opacity: 0;
+    transform: translateY(30px); /* Spostato in basso */
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimento meccanico fluido */
+}
+
+/* Stato finale elemento visibile */
+.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}

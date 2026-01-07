@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Vella | Software Development & Industrial Systems</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="brand">DAVID VELLA</div>
+        <div class="menu">
+            <a href="#projects">Progetti</a>
+            <a href="#technical-skills">Competenze</a>
+            <a href="#contact">Contatto</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <h1>Ingegneria del Software e Integrazione Sistemi Industriali</h1>
+        <p>Sviluppo di architetture scalabili e ottimizzazione di processi produttivi tramite soluzioni Full-Stack.</p>
+    </header>
+
+    <section id="projects">
+        <h2>Repository Selezionati</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>CNC Assistant</h3>
+                <p>Gestione diagnostica avanzata per sistemi Mazak. Implementazione in Node.js.</p>
+                <code class="stack">Node.js / Express / JSON</code>
+                <div class="card-links" style="margin-top: 1rem;">
+                    <a href="https://github.com/davidgallagher89/cnc-assistant" target="_blank" style="color: #fff; text-decoration: underline; margin-right: 15px;">Vedi Codice (GitHub)</a>
+                    </div>
+            </div>
+        
+            <div class="card">
+                <h3>System Objectives 2026</h3>
+                <p>Piattaforma di pianificazione strategica e monitoraggio KPI.</p>
+                <code class="stack">JavaScript / Docker / REST API</code>
+                <div class="card-links" style="margin-top: 1rem;">
+                    <a href="https://github.com/davidgallagher89/obbiettivi-2026" target="_blank" style="color: #fff; text-decoration: underline;">Vedi Codice (GitHub)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technical-skills">
+        <h2>Architettura e Stack Tecnologico</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Backend Engineering</h3>
+                <p>Sviluppo di logiche server-side asincrone e gestione flussi dati complessi.</p>
+                <code class="stack">Node.js / Express / REST APIs / File System I/O</code>
+            </div>
+
+            <div class="card">
+                <h3>Frontend Architecture</h3>
+                <p>Realizzazione di interfacce responsive ad alte prestazioni con design atomico.</p>
+                <code class="stack">HTML5 Semantic / CSS3 Grid & Flexbox / JavaScript ES6+</code>
+            </div>
+
+            <div class="card">
+                <h3>DevOps & Version Control</h3>
+                <p>Gestione del ciclo di vita del software e containerizzazione degli ambienti.</p>
+                <code class="stack">Git / GitHub Flow / Docker / Terminale Unix</code>
+            </div>
+
+            <div class="card">
+                <h3>Industrial Integration</h3>
+                <p>Applicazione di paradigmi di sviluppo software a processi manifatturieri e automazione CNC.</p>
+                <code class="stack">Mazatrol / G-Code / Process Optimization / Data Analysis</code>
+            </div>
+        </div>
+    </section>
+    <footer id="contact">
+        <p>&copy; 2026 David Vella | Documentazione Tecnica e Sviluppo Software</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        initTerminalEffect();
+        initScrollObserver();
+    });
+    
+    /**
+     * Funzione 1: Effetto Scrittura Terminale
+     * Simula la digitazione del sottotitolo nella Hero Section
+     */
+    function initTerminalEffect() {
+        // Selezioniamo il paragrafo della hero section
+        const targetElement = document.querySelector('.hero-section p');
+        
+        if (!targetElement) return;
+    
+        const fullText = targetElement.textContent; // Salviamo il testo originale
+        targetElement.textContent = ''; // Svuotiamo l'elemento
+        targetElement.classList.add('typing-cursor'); // Aggiungiamo il cursore
+    
+        let charIndex = 0;
+        const typeSpeed = 30; // Millisecondi per carattere (velocità di digitazione)
+    
+        function typeWriter() {
+            if (charIndex < fullText.length) {
+                targetElement.textContent += fullText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, typeSpeed);
+            } else {
+                // Rimuoviamo il cursore lampeggiante alla fine
+                setTimeout(() => {
+                    targetElement.classList.remove('typing-cursor');
+                }, 1000);
+            }
+        }
+    
+        // Ritardo iniziale prima di partire
+        setTimeout(typeWriter, 500);
+    }
+    
+    /**
+     * Funzione 2: Intersection Observer
+     * Rileva quando gli elementi entrano nella viewport e attiva l'animazione
+     */
+    function initScrollObserver() {
+        const elementsToReveal = document.querySelectorAll('.card, h2, h3');
+    
+        // Opzioni per l'osservatore (soglia di visibilità al 15%)
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+    
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    observer.unobserve(entry.target); // Smette di osservare una volta animato
+                }
+            });
+        }, observerOptions);
+    
+        // Applica la classe 'hidden-element' iniziale e avvia l'osservatore
+        elementsToReveal.forEach(el => {
+            el.classList.add('hidden-element');
+            revealOnScroll.observe(el);
+        });
+    }
+    </script>
+</body>
+</html>
